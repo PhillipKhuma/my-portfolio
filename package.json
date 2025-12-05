@@ -1,5 +1,5 @@
 {
-"homepage": "https://phillipkhuma.github.io/Portfolio",
+  "homepage": ".",
   "name": "my-portfolio",
   "version": "0.1.0",
   "private": true,
@@ -17,8 +17,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "predeploy":"npm run build",
-    "deploy": "gh-pages -d build -f",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -43,7 +41,6 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.22",
-    "gh-pages": "^6.3.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.16"
   }
