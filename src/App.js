@@ -5,12 +5,34 @@ import {
   Linkedin, Twitter, Instagram, Facebook, Mail, Phone, MessageCircle 
 } from 'lucide-react';
 import profileImage from './images/profile.jpg';
+import diplomaImage from './images/diploma.jpg';
+import msceImage from './images/msce.jpg';
+import portfolioImage from './images/portfolio.jpg';
+import ndiwoloanImage from './images/ndiwo-loan.jpg'; // renamed from "Ndiwo Loan.jpg"
+// Graphic design gallery images
+import design1 from './images/designs/design1.jpg';
+import design2 from './images/designs/design2.jpg';
+import design3 from './images/designs/design3.jpg';
+import design4 from './images/designs/design4.jpg';
+import design5 from './images/designs/design5.jpg';
+import design6 from './images/designs/design6.jpg';
+import design7 from './images/designs/design7.jpg';
+import homeBg from './images/home-bg.jpg';
+import aboutBg from './images/about-bg.jpg';
+import educationBg from './images/education-bg.jpg';
+import experienceBg from './images/experience-bg.jpg';
+import skillsBg from './images/skills-bg.jpg';
+import projectsBg from './images/projects-bg.jpg';
+import servicesBg from './images/services-bg.jpg';
+import refereesBg from './images/referees-bg.jpg';
 
 const App = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [hoveredSkill, setHoveredSkill] = useState(null);
   const [selectedDegree, setSelectedDegree] = useState(null);
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -20,19 +42,27 @@ const App = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const backgroundImages = {
-  home: '/images/home-bg.jpg',
-  about: '/images/about-bg.jpg',
-  education: '/images/education-bg.jpg',
-  trainings: '/images/education-bg.jpg',
-  experience: '/images/experience-bg.jpg',
-  skills: '/images/skills-bg.jpg',
-  projects: '/images/projects-bg.jpg',
-  services: '/images/services-bg.jpg',
-  referees: '/images/referees-bg.jpg',
-  contact: '/images/contact-bg.jpg'
-};
+  const graphicDesignGallery = [
+    { src: design1, title: 'Loan Flyer' },
+    { src: design2, title: 'Photo Editing' },
+    { src: design3, title: 'Social Media Kit' },
+    { src: design4, title: 'Event Poster' },
+    { src: design5, title: 'Brand Logo' },
+    { src: design6, title: 'App Wireframe' },
+    { src: design7, title: 'Flyer Mockup' },
+  ];
 
+  const backgroundImages = {
+  home: homeBg,
+  about: aboutBg,
+  education: educationBg,
+  trainings: educationBg,
+  experience: experienceBg,
+  skills: skillsBg,
+  projects: projectsBg,
+  services: servicesBg,
+  referees: refereesBg
+};
 
   const sections = [
     { id: 'about', label: 'About' },
@@ -59,14 +89,14 @@ const App = () => {
       institution: 'University of Malawi, Chancellor College',
       period: '2015 - 2017',
       description: 'Passed with Merit',
-      image: '/images/Diploma.jpg'
+      image: diplomaImage
     },
     {
       degree: 'MSCE',
       institution: 'Zomba Catholic Secondary School',
       period: '2011 - 2014',
       description: 'Graduated with 13 points',
-      image: '/images/msce.jpg'
+      image: msceImage
     }
   ];
 
@@ -77,59 +107,59 @@ const App = () => {
       description: 'Comprehensive knowledge in PC hardware maintenance, management, and optimization. Experienced in building custom workstations, server setup, component troubleshooting, and performance tuning.',
       skills: ['PC Assembly & Custom Builds', 'Hardware Diagnostics & Repair', 'Server Infrastructure', 'Component Upgrades & Optimization', 'Peripheral Management']
     },
-  software: {
-    title: 'Software & Development',
-    icon: Code,
-    description: 'Proficient in full-stack development, data tools, and productivity suites.',
-    skills: [
-      'Python, Java, C++ Programming',
-      'Web Design & Development (HTML, CSS, JavaScript)',
-      'Microsoft Office Suite',
-      'Database Design & Development',
-      'ODK & Kobo Collect'
-    ]
-  },
-  systems: {
-    title: 'Systems & IT Operations',
-    icon: Cpu,
-    description: 'Experienced in server administration, OS deployment, and technical support.',
-    skills: [
-      'Windows Server Administration',
-      'PC Hardware Maintenance & OS Installation',
-      'Network Troubleshooting',
-      'MALTIS & CIMIS Platforms',
-      'Technical Training & Documentation'
-    ]
-  },
-  data: {
-    title: 'Data Management',
-    icon: Database,
-    description: 'Skilled in data collection, cleaning, analysis, and reporting.',
-    skills: [
-      'Data Entry & Validation',
-      'Monitoring & Evaluation (M&E)',
-      'Report Consolidation',
-      'Data Visualization',
-      'Client & Case Worker Support'
-    ]
-  },
-  professional: {
-    title: 'Professional Skills',
-    icon: Palette,
-    description: 'Strong soft skills that enhance technical delivery.',
-    skills: [
-      'Project & Change Management',
-      'Community Mobilization',
-      'Problem Solving & Critical Thinking',
-      'Time Management',
-      'Teaching & Training'
-    ]
-  },
+    software: {
+      title: 'Software & Development',
+      icon: Code,
+      description: 'Proficient in full-stack development, data tools, and productivity suites.',
+      skills: [
+        'Python, Java, C++ Programming',
+        'Web Design & Development (HTML, CSS, JavaScript)',
+        'Microsoft Office Suite',
+        'Database Design & Development',
+        'ODK & Kobo Collect'
+      ]
+    },
+    systems: {
+      title: 'Systems & IT Operations',
+      icon: Cpu,
+      description: 'Experienced in server administration, OS deployment, and technical support.',
+      skills: [
+        'Windows Server Administration',
+        'PC Hardware Maintenance & OS Installation',
+        'Network Troubleshooting',
+        'MALTIS & CIMIS Platforms',
+        'Technical Training & Documentation'
+      ]
+    },
+    data: {
+      title: 'Data Management',
+      icon: Database,
+      description: 'Skilled in data collection, cleaning, analysis, and reporting.',
+      skills: [
+        'Data Entry & Validation',
+        'Monitoring & Evaluation (M&E)',
+        'Report Consolidation',
+        'Data Visualization',
+        'Client & Case Worker Support'
+      ]
+    },
+    professional: {
+      title: 'Professional Skills',
+      icon: Palette,
+      description: 'Strong soft skills that enhance technical delivery.',
+      skills: [
+        'Project & Change Management',
+        'Community Mobilization',
+        'Problem Solving & Critical Thinking',
+        'Time Management',
+        'Teaching & Training'
+      ]
+    },
     creative: {
       title: 'Creative Solutions',
       icon: Palette,
       description: 'Strong foundation in design principles and multimedia creation. Capable of producing professional graphics and edited video content.',
-      skills: ['Adobe Creative Suite', 'Video Editing & Post-Production', 'UI/UX Design Principles', 'Content Creation', 'Canva','Illustrator','Corel Draw', ]
+      skills: ['Adobe Creative Suite', 'Video Editing & Post-Production', 'UI/UX Design Principles', 'Content Creation', 'Canva','Illustrator','Corel Draw']
     }
   };
 
@@ -156,7 +186,6 @@ const App = () => {
         animate="default"
         style={{ left: 0, top: 0 }}
       />
-      
       {/* Background Image */}
       <div 
         className="fixed inset-0 bg-cover bg-center transition-all duration-1000"
@@ -356,101 +385,101 @@ const App = () => {
               </div>
             </motion.section>
           )}
-          {activeSection === 'trainings' && (
-  <motion.section
-    key="trainings"
-    initial={{ opacity: 0, y: 50 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -50 }}
-    transition={{ duration: 0.8 }}
-    className="min-h-screen py-20"
-  >
-    <div className="container mx-auto px-6">
-      <motion.h2 
-        className="text-4xl md:text-6xl font-bold text-white mb-12 text-center"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        Professional Trainings
-      </motion.h2>
 
-      <div className="max-w-4xl mx-auto space-y-8">
-        {[
-          {
-            title: 'Server Administration & Management',
-            issuer: 'Directorate of Road Traffic and Safety Services (DRTSS)',
-            period: '2019',
-            description: 'Comprehensive training in Windows Server setup, user management, backup strategies, and system security. Prepared to serve as system administrator for the Malawi Road Traffic Information System.'
-          },
-          {
-            title: 'DHIS2 (District Health Information Software 2) Training',
-            issuer: 'Ministry of Health / WHO / In-Service Capacity Building',
-            period: '2023',
-            description: 'Hands-on training in DHIS2 for health data management, including data entry, validation, dashboard creation, and indicator tracking. Focused on supporting public health reporting and decision-making at district level.'
-          },
-          {
-            title: 'Server Virtualization',
-            issuer: 'Directorate of Road Traffic and Safety Services (DRTSS)',
-            period: '2019',
-            description: 'Hands-on training in deploying and managing virtualized server environments using enterprise-grade virtualization platforms.'
-          },
-          {
-            title: 'MALTIS Regional Trainer Certification',
-            issuer: 'Directorate of Road Traffic and Safety Services (DRTSS)',
-            period: '2016 – 2020',
-            description: 'Certified to train staff across Malawi on the Malawi Road Traffic Information System (MALTIS), including terminal setup, data entry, and troubleshooting.'
-          },
-          {
-            title: 'CIMIS Data Platform Training',
-            issuer: 'Comsip Cooperative Union',
-            period: '2022',
-            description: 'Mastered data capture, validation, and reporting workflows in the Community Implementation Management Information System (CIMIS) for social protection programs.'
-          },
-          {
-            title: 'ODK & Kobo Toolbox Advanced User',
-            issuer: 'Self-Directed / Field Application',
-            period: '2015 – Present',
-            description: 'Extensive field experience designing forms, collecting data, and managing mobile-based surveys for government and NGO projects.'
-          },
-          {
-            title: 'Linux Command Line Administration',
-            issuer: 'Self-Directed / Field Application',
-            period: '2015 – Present',
-            description: 'Server administration on Ubuntu and CentOS via CLI, including user management, cron jobs, firewall rules (UFW/iptables), and Bash automation scripts.'
-          },
-          {
-            title: 'Diploma in Project Management (Ongoing)',
-            issuer: 'Alison Learning Platform',
-            period: '2023 – Present',
-            description: 'Studying project lifecycle, risk management, and stakeholder communication to enhance delivery of IT and data initiatives.'
-          }
-        ].map((training, index) => (
-          <motion.div
-            key={index}
-            className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300"
-            whileHover={{ 
-              y: -5, 
-              scale: 1.02,
-              boxShadow: '0 20px 40px rgba(0, 200, 255, 0.2)'
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-          >
-            <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-3">
-              <div>
-                <h3 className="text-2xl font-bold text-cyan-400">{training.title}</h3>
-                <p className="text-purple-300 font-medium">{training.issuer}</p>
+          {activeSection === 'trainings' && (
+            <motion.section
+              key="trainings"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
+              transition={{ duration: 0.8 }}
+              className="min-h-screen py-20"
+            >
+              <div className="container mx-auto px-6">
+                <motion.h2 
+                  className="text-4xl md:text-6xl font-bold text-white mb-12 text-center"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  Professional Trainings
+                </motion.h2>
+                <div className="max-w-4xl mx-auto space-y-8">
+                  {[
+                    {
+                      title: 'Server Administration & Management',
+                      issuer: 'Directorate of Road Traffic and Safety Services (DRTSS)',
+                      period: '2019',
+                      description: 'Comprehensive training in Windows Server setup, user management, backup strategies, and system security. Prepared to serve as system administrator for the Malawi Road Traffic Information System.'
+                    },
+                    {
+                      title: 'DHIS2 (District Health Information Software 2) Training',
+                      issuer: 'Ministry of Health / WHO / In-Service Capacity Building',
+                      period: '2023',
+                      description: 'Hands-on training in DHIS2 for health data management, including data entry, validation, dashboard creation, and indicator tracking. Focused on supporting public health reporting and decision-making at district level.'
+                    },
+                    {
+                      title: 'Server Virtualization',
+                      issuer: 'Directorate of Road Traffic and Safety Services (DRTSS)',
+                      period: '2019',
+                      description: 'Hands-on training in deploying and managing virtualized server environments using enterprise-grade virtualization platforms.'
+                    },
+                    {
+                      title: 'MALTIS Regional Trainer Certification',
+                      issuer: 'Directorate of Road Traffic and Safety Services (DRTSS)',
+                      period: '2016 – 2020',
+                      description: 'Certified to train staff across Malawi on the Malawi Road Traffic Information System (MALTIS), including terminal setup, data entry, and troubleshooting.'
+                    },
+                    {
+                      title: 'CIMIS Data Platform Training',
+                      issuer: 'Comsip Cooperative Union',
+                      period: '2022',
+                      description: 'Mastered data capture, validation, and reporting workflows in the Community Implementation Management Information System (CIMIS) for social protection programs.'
+                    },
+                    {
+                      title: 'ODK & Kobo Toolbox Advanced User',
+                      issuer: 'Self-Directed / Field Application',
+                      period: '2015 – Present',
+                      description: 'Extensive field experience designing forms, collecting data, and managing mobile-based surveys for government and NGO projects.'
+                    },
+                    {
+                      title: 'Linux Command Line Administration',
+                      issuer: 'Self-Directed / Field Application',
+                      period: '2015 – Present',
+                      description: 'Server administration on Ubuntu and CentOS via CLI, including user management, cron jobs, firewall rules (UFW/iptables), and Bash automation scripts.'
+                    },
+                    {
+                      title: 'Diploma in Project Management (Ongoing)',
+                      issuer: 'Alison Learning Platform',
+                      period: '2023 – Present',
+                      description: 'Studying project lifecycle, risk management, and stakeholder communication to enhance delivery of IT and data initiatives.'
+                    }
+                  ].map((training, index) => (
+                    <motion.div
+                      key={index}
+                      className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300"
+                      whileHover={{ 
+                        y: -5, 
+                        scale: 1.02,
+                        boxShadow: '0 20px 40px rgba(0, 200, 255, 0.2)'
+                      }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-3">
+                        <div>
+                          <h3 className="text-2xl font-bold text-cyan-400">{training.title}</h3>
+                          <p className="text-purple-300 font-medium">{training.issuer}</p>
+                        </div>
+                        <span className="text-purple-400 font-medium mt-2 md:mt-0">{training.period}</span>
+                      </div>
+                      <p className="text-gray-300">{training.description}</p>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
-              <span className="text-purple-400 font-medium mt-2 md:mt-0">{training.period}</span>
-            </div>
-            <p className="text-gray-300">{training.description}</p>
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  </motion.section>
-)}
+            </motion.section>
+          )}
 
           {activeSection === 'skills' && (
             <motion.section
@@ -518,448 +547,434 @@ const App = () => {
               </div>
             </motion.section>
           )}
-          
+
           {activeSection === 'experience' && (
-  <motion.section
-    key="experience"
-    initial={{ opacity: 0, x: 50 }}
-    animate={{ opacity: 1, x: 0 }}
-    exit={{ opacity: 0, x: -50 }}
-    transition={{ duration: 0.8 }}
-    className="min-h-screen py-20"
-  >
-    <div className="container mx-auto px-6">
-      <motion.h2 
-        className="text-4xl md:text-6xl font-bold text-white mb-12 text-center"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        Professional Experience
-      </motion.h2>
-      
-      <div className="max-w-4xl mx-auto space-y-8">
-        {[
-          {
-            title: 'Statistical Clerk',
-            company: 'Partners in Hope',
-            location: 'Chikwawa, Malawi',
-            period: 'June 2023 – Current',
-            description: 'Collecting, entering, and verifying data from health services and community outreach programs while ensuring accuracy and consistency. Maintaining organized records, preparing basic reports and visual summaries, and supporting monitoring and evaluation efforts. Working with databases, upholding data privacy standards, and assisting program teams with ongoing data needs for effective reporting.'
-          },
-          {
-            title: 'Statistical Clerk',
-            company: 'Ministry Of Health',
-            location: 'Chikwawa, Malawi',
-            period: 'May 2023 – June 2025',
-            description: 'I collected, recorded, and validated health-related data from hospital departments, outreach clinics, and other public health programs using digital tools such as DHIS2, SurveyCTO, and KoBoCollect. I maintained accurate and confidential records in national health databases, cleaned datasets to correct errors or inconsistencies, and assisted in generating routine reports on disease prevalence, immunization coverage, maternal and child health indicators, and other key metrics. I also supported senior analysts and program officers by preparing tables, charts, and data summaries used for policy planning, outbreak response, and donor reporting. Throughout my work, I strictly adhered to data protection protocols and ensured timely submission of information to meet both national and international health reporting requirements.'
-          },
-          {
-            title: 'Graphics Designer',
-            company: 'ADVOS Solutions',
-            location: 'Remote',
-            period: 'September 2025',
-            description: 'As a remote Graphic Designer, I created visual content for digital and print media, including logos, brochures, social media graphics, and website assets. I collaborated with clients and team members through online platforms to understand project requirements, incorporated feedback into design revisions, and delivered final files on schedule. I managed multiple projects simultaneously, maintained brand consistency across materials, and ensured all designs were original, visually compelling, and aligned with client objectives—all while working independently from a remote setup.'
-          },
-          {
-            title: 'Data Officer',
-            company: 'Comsip Cooperative Union',
-            location: 'Blantyre, Malawi',
-            period: 'Nov 2022 – May 2023',
-            description: 'Worked with case workers on SCT & EPWP programs. Captured and cleaned data in CIMIS, consolidated district reports, and trained staff on data presentation. Designed user-friendly templates for efficient data acquisition.'
-          },
-          {
-            title: 'IT Officer | Graphics Designer',
-            company: 'Khan’s Technologies',
-            location: 'Malawi',
-            period: 'Oct 2021 – May 2022',
-            description: 'Analyzed and designed computer systems. Provided technical support, maintained networks, scheduled upgrades, and trained staff. Redefined system requirements and resolved critical IT issues, Created Posters, Flyers, Ads and Labels for all Commecial Products made by the Office'
-          },
-          {
-            title: 'IT Officer',
-            company: 'Dynamic-Tech Solutions',
-            location: 'Malawi',
-            period: 'Apr 2020 – Jun 2021',
-            description: 'Designed and implemented client websites (web & mobile). Provided onsite/online training, documented technical issues, and ensured systems met client specifications. Managed project risks and deadlines.'
-          },
-          {
-            title: 'IT | Data Officer',
-            company: 'Directorate of Road Traffic and Safety Services (DRTSS)',
-            location: 'Malawi',
-            period: 'Oct 2015 – Feb 2020',
-            description: 'Served as regional trainer for MALTIS. Installed OS, configured terminals, and provided client support. Successfully completed Server Administration & Virtualization training for the Malawi Road Traffic Information System.'
-          }
-        ].map((job, index) => (
-          <motion.div
-            key={index}
-            className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300"
-            whileHover={{ 
-              y: -5, 
-              scale: 1.02,
-              boxShadow: '0 20px 40px rgba(0, 200, 255, 0.2)'
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-          >
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-              <h3 className="text-2xl font-bold text-cyan-400">{job.title}</h3>
-              <span className="text-purple-400 font-medium">{job.period}</span>
-            </div>
-            <p className="text-purple-300 font-medium mb-2">{job.company} • {job.location}</p>
-            <p className="text-gray-300">{job.description}</p>
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  </motion.section>
-)}
+            <motion.section
+              key="experience"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.8 }}
+              className="min-h-screen py-20"
+            >
+              <div className="container mx-auto px-6">
+                <motion.h2 
+                  className="text-4xl md:text-6xl font-bold text-white mb-12 text-center"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  Professional Experience
+                </motion.h2>
+                <div className="max-w-4xl mx-auto space-y-8">
+                  {[
+                    {
+                      title: 'Statistical Clerk',
+                      company: 'Partners in Hope',
+                      location: 'Chikwawa, Malawi',
+                      period: 'June 2023 – Current',
+                      description: 'Collecting, entering, and verifying data from health services and community outreach programs while ensuring accuracy and consistency. Maintaining organized records, preparing basic reports and visual summaries, and supporting monitoring and evaluation efforts. Working with databases, upholding data privacy standards, and assisting program teams with ongoing data needs for effective reporting.'
+                    },
+                    {
+                      title: 'Statistical Clerk',
+                      company: 'Ministry Of Health',
+                      location: 'Chikwawa, Malawi',
+                      period: 'May 2023 – June 2025',
+                      description: 'I collected, recorded, and validated health-related data from hospital departments, outreach clinics, and other public health programs using digital tools such as DHIS2, SurveyCTO, and KoBoCollect. I maintained accurate and confidential records in national health databases, cleaned datasets to correct errors or inconsistencies, and assisted in generating routine reports on disease prevalence, immunization coverage, maternal and child health indicators, and other key metrics. I also supported senior analysts and program officers by preparing tables, charts, and data summaries used for policy planning, outbreak response, and donor reporting. Throughout my work, I strictly adhered to data protection protocols and ensured timely submission of information to meet both national and international health reporting requirements.'
+                    },
+                    {
+                      title: 'Graphics Designer',
+                      company: 'ADVOS Solutions',
+                      location: 'Remote',
+                      period: 'September 2025',
+                      description: 'As a remote Graphic Designer, I created visual content for digital and print media, including logos, brochures, social media graphics, and website assets. I collaborated with clients and team members through online platforms to understand project requirements, incorporated feedback into design revisions, and delivered final files on schedule. I managed multiple projects simultaneously, maintained brand consistency across materials, and ensured all designs were original, visually compelling, and aligned with client objectives—all while working independently from a remote setup.'
+                    },
+                    {
+                      title: 'Data Officer',
+                      company: 'Comsip Cooperative Union',
+                      location: 'Blantyre, Malawi',
+                      period: 'Nov 2022 – May 2023',
+                      description: 'Worked with case workers on SCT & EPWP programs. Captured and cleaned data in CIMIS, consolidated district reports, and trained staff on data presentation. Designed user-friendly templates for efficient data acquisition.'
+                    },
+                    {
+                      title: 'IT Officer | Graphics Designer',
+                      company: 'Khan’s Technologies',
+                      location: 'Malawi',
+                      period: 'Oct 2021 – May 2022',
+                      description: 'Analyzed and designed computer systems. Provided technical support, maintained networks, scheduled upgrades, and trained staff. Redefined system requirements and resolved critical IT issues, Created Posters, Flyers, Ads and Labels for all Commecial Products made by the Office'
+                    },
+                    {
+                      title: 'IT Officer',
+                      company: 'Dynamic-Tech Solutions',
+                      location: 'Malawi',
+                      period: 'Apr 2020 – Jun 2021',
+                      description: 'Designed and implemented client websites (web & mobile). Provided onsite/online training, documented technical issues, and ensured systems met client specifications. Managed project risks and deadlines.'
+                    },
+                    {
+                      title: 'IT | Data Officer',
+                      company: 'Directorate of Road Traffic and Safety Services (DRTSS)',
+                      location: 'Malawi',
+                      period: 'Oct 2015 – Feb 2020',
+                      description: 'Served as regional trainer for MALTIS. Installed OS, configured terminals, and provided client support. Successfully completed Server Administration & Virtualization training for the Malawi Road Traffic Information System.'
+                    }
+                  ].map((job, index) => (
+                    <motion.div
+                      key={index}
+                      className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300"
+                      whileHover={{ 
+                        y: -5, 
+                        scale: 1.02,
+                        boxShadow: '0 20px 40px rgba(0, 200, 255, 0.2)'
+                      }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
+                        <h3 className="text-2xl font-bold text-cyan-400">{job.title}</h3>
+                        <span className="text-purple-400 font-medium">{job.period}</span>
+                      </div>
+                      <p className="text-purple-300 font-medium mb-2">{job.company} • {job.location}</p>
+                      <p className="text-gray-300">{job.description}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.section>
+          )}
 
           {activeSection === 'projects' && (
-  <motion.section
-    key="projects"
-    initial={{ opacity: 0, y: 50 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -50 }}
-    transition={{ duration: 0.8 }}
-    className="min-h-screen py-20"
-  >
-    <div className="container mx-auto px-6">
-      <motion.h2 
-        className="text-4xl md:text-6xl font-bold text-white mb-12 text-center"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        Projects
-      </motion.h2>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {[
-          {
-            title: "IT Support Dashboard",
-            description: "A responsive admin panel for monitoring network health, ticket status, and hardware inventory. Built with React and Chart.js.",
-            image: "https://placehold.co/600x400/FF8C00/ffffff?text=IT+Support+Dashboard",
-            tech: ["React", "Tailwind CSS", "Chart.js"]
-          },
-          {
-            title: "Lingo Sprout: Kids' English Learning Game",
-            description: "An offline-first educational game that helps parents and teachers teach English vocabulary, phonics, and numbers to children aged 3–8. Features voice interaction, progress tracking, and local language support (Chichewa/Tumbuka). Built with Python and designed for low-resource environments.",
-            image: "https://placehold.co/600x400/AA44FF/ffffff?text=Lingo+Sprout+Game",
-            tech: ["Python", "Kivy", "Speech Recognition", "Educational Design", "UI/UX"],
-          },
-          {
-            title: "Portfolio Website",
-            description: "This very site! A dynamic, animated portfolio using Framer Motion, Tailwind, and React — showcasing my tech and creative skills.",
-            image: "/images/portfolio.jpg",
-            tech: ["React", "Framer Motion", "Lucide Icons"],
-            link: "https://github.com/yourusername/portfolio"
-          },
-          {
-            title: "Driving School Management System",
-            description: "A full-stack web application for driving schools to register new clients, track their progress (Learner’s Licence or Driving Licence), record payments, and display real-time balances. Features role-based dashboards for admins and students, automated status updates, and payment history logs.",
-            image: "https://placehold.co/600x400/1a1a2e/ffffff?text=Driving+School+Management+System",
-            tech: ["Python", "Flask", "SQLite", "HTML/CSS", "JavaScript", "Responsive Design"],
-          },
-          {
-            title: "Lender Space",
-            description: "A Python command-line tool for money lenders to register borrowers, track loan disbursements, auto-calculate compound interest, and send email/SMS reminders before due dates. Built with Python, SQLite, and smtplib.",
-            image: "https://placehold.co/600x400/00BFFF/ffffff?text=Lender+Space",
-            tech: ["Python", "SQLite", "smtplib", "Tabulate", "CLI"],
-            
-          },
-          {
-            title: "Graphic Design Portfolio",
-            description: "Branding and UI mockups for local businesses, including logos, social media kits, and app wireframes.",
-            image: "https://placehold.co/600x400/533483/ffffff?text=Design+Work",
-            tech: ["Figma", "Adobe Illustrator", "Photoshop"],
-            link: "#"
-          }
-        ].map((project, index) => (
-          <motion.div
-            key={index}
-            className="bg-white/10 backdrop-blur-lg rounded-2xl overflow-hidden border border-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300"
-            whileHover={{ 
-              y: -8, 
-              scale: 1.03,
-              boxShadow: '0 25px 50px rgba(0, 200, 255, 0.25)'
-            }}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-          >
-            {/* Project Image */}
-            <div className="h-48 overflow-hidden">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-              />
-            </div>
-
-            {/* Project Info */}
-            <div className="p-6">
-              <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-              <p className="text-gray-300 text-sm mb-4">{project.description}</p>
-
-              {/* Tech Tags */}
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tech.map((tech, i) => (
-                  <span
-                    key={i}
-                    className="px-2 py-1 bg-cyan-500/20 text-cyan-300 text-xs rounded-full"
-                  >
-                    {tech}
-                  </span>
-                ))}
+            <motion.section
+              key="projects"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
+              transition={{ duration: 0.8 }}
+              className="min-h-screen py-20"
+            >
+              <div className="container mx-auto px-6">
+                <motion.h2 
+                  className="text-4xl md:text-6xl font-bold text-white mb-12 text-center"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  Projects
+                </motion.h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                  {[
+                    {
+                      title: "IT Support Dashboard",
+                      description: "A responsive admin panel for monitoring network health, ticket status, and hardware inventory. Built with React and Chart.js.",
+                      image: "https://placehold.co/600x400/FF8C00/ffffff?text=IT+Support+Dashboard",
+                      tech: ["React", "Tailwind CSS", "Chart.js"]
+                    },
+                    {
+                      title: "Lingo Sprout: Kids' English Learning Game",
+                      description: "An offline-first educational game that helps parents and teachers teach English vocabulary, phonics, and numbers to children aged 3–8. Features voice interaction, progress tracking, and local language support (Chichewa/Tumbuka). Built with Python and designed for low-resource environments.",
+                      image: "https://placehold.co/600x400/AA44FF/ffffff?text=Lingo+Sprout+Game",
+                      tech: ["Python", "Kivy", "Speech Recognition", "Educational Design", "UI/UX"],
+                    },
+                    {
+                      title: "Portfolio Website",
+                      description: "This very site! A dynamic, animated portfolio using Framer Motion, Tailwind, and React — showcasing my tech and creative skills.",
+                      image: portfolioImage,
+                      tech: ["React", "Framer Motion", "Lucide Icons"],
+                      link: "https://github.com/yourusername/portfolio"
+                    },
+                    {
+                      title: "Driving School Management System",
+                      description: "A full-stack web application for driving schools to register new clients, track their progress (Learner’s Licence or Driving Licence), record payments, and display real-time balances. Features role-based dashboards for admins and students, automated status updates, and payment history logs.",
+                      image: "https://placehold.co/600x400/1a1a2e/ffffff?text=Driving+School+Management+System",
+                      tech: ["Python", "Flask", "SQLite", "HTML/CSS", "JavaScript", "Responsive Design"],
+                    },
+                    {
+                      title: "Lender Space",
+                      description: "A Python command-line tool for money lenders to register borrowers, track loan disbursements, auto-calculate compound interest, and send email/SMS reminders before due dates. Built with Python, SQLite, and smtplib.",
+                      image: "https://placehold.co/600x400/00BFFF/ffffff?text=Lender+Space",
+                      tech: ["Python", "SQLite", "smtplib", "Tabulate", "CLI"],
+                    },
+                    {
+                      title: "Graphic Design Sample Projects",
+                      description: "Branding, Posters, Flyers, mockups for local businesses, including logos, social media kits, and app wireframes.",
+                      image: ndiwoloanImage,
+                      tech: ["Figma", "Adobe Illustrator", "Photoshop"]
+                    }
+                  ].map((project, index) => {
+                    const isGraphicDesign = project.title === "Graphic Design Sample Projects";
+                    return (
+                      <motion.div
+                        key={index}
+                        className="bg-white/10 backdrop-blur-lg rounded-2xl overflow-hidden border border-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300"
+                        whileHover={{ 
+                          y: -8, 
+                          scale: 1.03,
+                          boxShadow: '0 25px 50px rgba(0, 200, 255, 0.25)'
+                        }}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        onClick={isGraphicDesign ? (e) => {
+                          e.stopPropagation();
+                          setGalleryOpen(true);
+                          setCurrentImageIndex(0);
+                        } : undefined}
+                        style={{ cursor: isGraphicDesign ? 'pointer' : 'default' }}
+                      >
+                        <div className="h-48 overflow-hidden">
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                          />
+                        </div>
+                        <div className="p-6">
+                          <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+                          <p className="text-gray-300 text-sm mb-4">{project.description}</p>
+                          <div className="flex flex-wrap gap-2 mb-4">
+                            {project.tech.map((tech, i) => (
+                              <span
+                                key={i}
+                                className="px-2 py-1 bg-cyan-500/20 text-cyan-300 text-xs rounded-full"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                          {isGraphicDesign ? (
+                            <span className="text-cyan-400 font-medium text-sm mt-2">
+                              View Gallery →
+                            </span>
+                          ) : project.link ? (
+                            <a
+                              href={project.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-block text-cyan-400 hover:text-cyan-300 font-medium text-sm mt-2"
+                            >
+                              View Project →
+                            </a>
+                          ) : null}
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
               </div>
+            </motion.section>
+          )}
 
-              {/* View Button */}
-              {project.link && (
-  <a
-    href={project.link}
-    target={typeof project.link === 'string' && project.link.startsWith('http') ? "_blank" : undefined}
-    rel={typeof project.link === 'string' && project.link.startsWith('http') ? "noopener noreferrer" : undefined}
-    className="inline-block text-cyan-400 hover:text-cyan-300 font-medium text-sm mt-2"
-  >
-    View Project →
-  </a>
-)}
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  </motion.section>
-)}
+          {activeSection === 'services' && (
+            <motion.section
+              key="services"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
+              transition={{ duration: 0.8 }}
+              className="min-h-screen py-20"
+            >
+              <div className="container mx-auto px-6">
+                <motion.h2 
+                  className="text-4xl md:text-6xl font-bold text-white mb-12 text-center"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  Professional Services
+                </motion.h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                  {[
+                    { title: 'PC Hardware Repair & Maintenance', desc: 'Diagnosis, repair, and optimization of desktops, laptops, and workstations.' },
+                    { title: 'Custom PC Builds', desc: 'Tailored systems for gaming, productivity, or creative workloads.' },
+                    { title: 'Network Setup & Troubleshooting', desc: 'Secure and reliable home or small business network solutions.' },
+                    { title: 'Web & Graphic Design', desc: 'Responsive websites and professional visuals for your brand.' },
+                    { title: 'Data Entry & Cleaning', desc: 'Accurate, fast, and confidential entry and validation of survey or business data using Excel, Google Sheets, or databases.' },
+                    { title: 'Enumerator & Field Data Collection', desc: 'Professional mobile-based data gathering using ODK, Kobo Collect, or SurveyCTO for NGOs, research, and government programs.' },
+                    { title: 'Virtual Assistant (Tech-Savvy)', desc: 'Email/calendar management, online research, data organization, and tech tool setup for busy professionals and remote teams.' },
+                    { title: 'Video Editing & Post-Production', desc: 'Clean, engaging edits for training videos, social media clips, event highlights, and client testimonials.' },
+                    { title: 'Windows Server Administration', desc: 'Setup, user management, backup, and security for small business server environments.' },
+                    { title: 'IT Training & Digital Literacy', desc: 'Customized one-on-one or group training on computer basics, software, online safety, and productivity tools.' },
+                    { title: 'Database Design & Development', desc: 'Simple, functional databases for small businesses to manage clients, inventory, or projects.' },
+                    { title: 'Remote IT Support', desc: 'On-demand troubleshooting for software, connectivity, and device issues—ideal for remote workers and small offices.' }
+                  ].map((service, i) => (
+                    <motion.div
+                      key={i}
+                      className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-cyan-500/20"
+                      whileHover={{ y: -5, borderColor: 'rgba(56, 189, 248, 0.6)' }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                    >
+                      <h3 className="text-2xl font-bold text-cyan-400 mb-3">{service.title}</h3>
+                      <p className="text-gray-300">{service.desc}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.section>
+          )}
 
-{activeSection === 'services' && (
-  <motion.section
-    key="services"
-    initial={{ opacity: 0, y: 50 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -50 }}
-    transition={{ duration: 0.8 }}
-    className="min-h-screen py-20"
-  >
-    <div className="container mx-auto px-6">
-      <motion.h2 
-        className="text-4xl md:text-6xl font-bold text-white mb-12 text-center"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        Professional Services
-      </motion.h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-        {[
-          { title: 'PC Hardware Repair & Maintenance', desc: 'Diagnosis, repair, and optimization of desktops, laptops, and workstations.' },
-{ title: 'Custom PC Builds', desc: 'Tailored systems for gaming, productivity, or creative workloads.' },
-{ title: 'Network Setup & Troubleshooting', desc: 'Secure and reliable home or small business network solutions.' },
-{ title: 'Web & Graphic Design', desc: 'Responsive websites and professional visuals for your brand.' },
-{ title: 'Data Entry & Cleaning', desc: 'Accurate, fast, and confidential entry and validation of survey or business data using Excel, Google Sheets, or databases.' },
-{ title: 'Enumerator & Field Data Collection', desc: 'Professional mobile-based data gathering using ODK, Kobo Collect, or SurveyCTO for NGOs, research, and government programs.' },
-{ title: 'Virtual Assistant (Tech-Savvy)', desc: 'Email/calendar management, online research, data organization, and tech tool setup for busy professionals and remote teams.' },
-{ title: 'Video Editing & Post-Production', desc: 'Clean, engaging edits for training videos, social media clips, event highlights, and client testimonials.' },
-{ title: 'Windows Server Administration', desc: 'Setup, user management, backup, and security for small business server environments.' },
-{ title: 'IT Training & Digital Literacy', desc: 'Customized one-on-one or group training on computer basics, software, online safety, and productivity tools.' },
-{ title: 'Database Design & Development', desc: 'Simple, functional databases for small businesses to manage clients, inventory, or projects.' },
-{ title: 'Remote IT Support', desc: 'On-demand troubleshooting for software, connectivity, and device issues—ideal for remote workers and small offices.' }
-        ].map((service, i) => (
-          <motion.div
-            key={i}
-            className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-cyan-500/20"
-            whileHover={{ y: -5, borderColor: 'rgba(56, 189, 248, 0.6)' }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-          >
-            <h3 className="text-2xl font-bold text-cyan-400 mb-3">{service.title}</h3>
-            <p className="text-gray-300">{service.desc}</p>
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  </motion.section>
-)}
+          {activeSection === 'referees' && (
+            <motion.section
+              key="referees"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
+              transition={{ duration: 0.8 }}
+              className="min-h-screen py-20"
+            >
+              <div className="container mx-auto px-6">
+                <motion.h2 
+                  className="text-4xl md:text-6xl font-bold text-white mb-12 text-center"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  Professional Referees
+                </motion.h2>
+                <div className="max-w-3xl mx-auto space-y-6">
+                  {[
+                    {
+                      name: 'Leonard Mtonya',
+                      role: 'Regional Manager, Directorate of Road Traffic and Safety Services',
+                      contact: '+265 999 315 382 | +265 888 315 382',
+                      email: 'leonardmtonya@gmail.com'
+                    },
+                    {
+                      name: 'Damiano Banda',
+                      role: 'IT Manager, Dynamic Tech Solutions',
+                      contact: '+265 991 318 204',
+                      email: 'damienbanda4@gmail.com'
+                    },
+                    {
+                      name: 'Angus Rodgers',
+                      role: 'IT Manager, Zodiak Broadcasting Station',
+                      contact: '+265 993 195 184',
+                      email: ''
+                    }
+                  ].map((ref, i) => (
+                    <motion.div
+                      key={i}
+                      className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-cyan-500/20"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.2 }}
+                    >
+                      <h3 className="text-2xl font-bold text-white">{ref.name}</h3>
+                      <p className="text-cyan-300">{ref.role}</p>
+                      <p className="text-gray-400 mt-1">{ref.contact}</p>
+                      {ref.email && <p className="text-gray-400">{ref.email}</p>}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.section>
+          )}
 
-{activeSection === 'referees' && (
-  <motion.section
-    key="referees"
-    initial={{ opacity: 0, y: 50 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -50 }}
-    transition={{ duration: 0.8 }}
-    className="min-h-screen py-20"
-  >
-    <div className="container mx-auto px-6">
-      <motion.h2 
-        className="text-4xl md:text-6xl font-bold text-white mb-12 text-center"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        Professional Referees
-      </motion.h2>
-      <div className="max-w-3xl mx-auto space-y-6">
-        {[
-          {
-            name: 'Leonard Mtonya',
-            role: 'Regional Manager, Directorate of Road Traffic and Safety Services',
-            contact: '+265 999 315 382 | +265 888 315 382',
-            email: 'leonardmtonya@gmail.com'
-          },
-          {
-            name: 'Damiano Banda',
-            role: 'IT Manager, Dynamic Tech Solutions',
-            contact: '+265 991 318 204',
-            email: 'damienbanda4@gmail.com'
-          },
-          {
-            name: 'Angus Rodgers',
-            role: 'IT Manager, Zodiak Broadcasting Station',
-            contact: '+265 993 195 184',
-            email: ''
-          }
-        ].map((ref, i) => (
-          <motion.div
-            key={i}
-            className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-cyan-500/20"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: i * 0.2 }}
-          >
-            <h3 className="text-2xl font-bold text-white">{ref.name}</h3>
-            <p className="text-cyan-300">{ref.role}</p>
-            <p className="text-gray-400 mt-1">{ref.contact}</p>
-            {ref.email && <p className="text-gray-400">{ref.email}</p>}
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  </motion.section>
-)}
-
-{activeSection === 'contact' && (
-  <motion.section
-    key="contact"
-    initial={{ opacity: 0, y: 50 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -50 }}
-    transition={{ duration: 0.8 }}
-    className="min-h-screen py-20"
-  >
-    <div className="container mx-auto px-6">
-      <motion.h2 
-        className="text-4xl md:text-6xl font-bold text-white mb-12 text-center"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        Get In Touch
-      </motion.h2>
-      
-      <div className="max-w-3xl mx-auto text-center">
-        <div className="mb-10 overflow-hidden">
-  <div className="inline-block whitespace-nowrap">
-    <div className="inline-block animate-scroll text-xl text-gray-300 font-medium">
-      Have a project in mind?&nbsp;&nbsp;
-      Need your own portfolio?&nbsp;&nbsp;
-      IT support?&nbsp;&nbsp;
-      Or perhaps a position for me?&nbsp;&nbsp;
-      I'd love to hear from you!&nbsp;&nbsp;
-      {/* Repeat for seamless loop */}
-      Have a project in mind?&nbsp;&nbsp;
-      Need your own portfolio?&nbsp;&nbsp;
-      IT support?&nbsp;&nbsp;
-      Or perhaps a position for me?&nbsp;&nbsp;
-      I'd love to hear from you!&nbsp;&nbsp;
-    </div>
-  </div>
-</div>
-
-        {/* Social Media Icons */}
-        <div className="flex justify-center space-x-8 mb-10">
-          {[
-            { Icon: Linkedin, label: 'LinkedIn', url: 'https://linkedin.com/in/yourprofile' },
-            { Icon: Twitter, label: 'X (Twitter)', url: 'https://x.com/yourhandle' },
-            { Icon: Instagram, label: 'Instagram', url: 'https://instagram.com/yourhandle' },
-            { Icon: Facebook, label: 'Facebook', url: 'https://facebook.com/yourpage' }
-          ].map((social, i) => {
-            const IconComponent = social.Icon;
-            return (
-              <motion.a
-                key={social.label}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-cyan-400 hover:text-cyan-300 transition-colors"
-                whileHover={{ y: -5, scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                aria-label={social.label}
-              >
-                <IconComponent className="w-8 h-8" />
-              </motion.a>
-            );
-          })}
-        </div>
-
-        {/* Contact Methods */}
-        <div className="space-y-4 mb-10"> {/* Reduced from space-y-5 to space-y-4 for tighter, neater look */}
-          {/* Email */}
-          <a 
-            href="mailto:phillipkhuma@gmail.com" 
-            className="inline-flex items-center justify-center w-full max-w-xs mx-auto px-6 py-3.5 bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-medium rounded-full hover:from-cyan-400 hover:to-purple-400 transition-all duration-300 shadow-md hover:shadow-lg"
-          >
-            <Mail className="w-5 h-5 mr-2" />
-            Email Me
-          </a>
-
-          {/* Primary Phone */}
-          <a 
-            href="tel:+265990204750" 
-            className="inline-flex items-center justify-center w-full max-w-xs mx-auto px-6 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-medium rounded-full hover:from-emerald-400 hover:to-teal-400 transition-all duration-300 shadow-md hover:shadow-lg"
-          >
-            <Phone className="w-5 h-5 mr-2" />
-            Call: +265 990 204 750
-          </a>
-
-          {/* Secondary Phone */}
-          <a 
-            href="tel:+265881103178" 
-            className="inline-flex items-center justify-center w-full max-w-xs mx-auto px-6 py-3.5 bg-gradient-to-r from-emerald-400 to-teal-400 text-white font-medium rounded-full hover:from-emerald-300 hover:to-teal-300 transition-all duration-300 shadow-md hover:shadow-lg"
-          >
-            <Phone className="w-5 h-5 mr-2" />
-            Call: +265 881 103 178
-          </a>
-          
-          {/* WhatsApp */}
-          <a 
-            href="https://wa.me/265881103178" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center w-full max-w-xs mx-auto px-6 py-3.5 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-medium rounded-full hover:from-green-400 hover:to-emerald-400 transition-all duration-300 shadow-md hover:shadow-lg"
-          >
-            <MessageCircle className="w-5 h-5 mr-2" />
-            WhatsApp: +265 881 103 178
-          </a>
-          {/* Download CV Button */}
-<a 
-  href="/PHILLIP CV.pdf" 
-  download 
-  className="inline-flex items-center justify-center w-full max-w-xs mx-auto px-6 py-3.5 bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-medium rounded-full hover:from-purple-400 hover:to-cyan-400 transition-all duration-300 shadow-md hover:shadow-lg"
->
-  <HardDrive className="w-5 h-5 mr-2" />
-  Download CV
-</a>
-        </div>
-
-        <p className="text-gray-500 text-sm mt-6">
-          Based in Blantyre, Malawi • Available for remote & on-site work
-        </p>
-      </div>
-    </div>
-  </motion.section>
-)}
-
+          {activeSection === 'contact' && (
+            <motion.section
+              key="contact"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
+              transition={{ duration: 0.8 }}
+              className="min-h-screen py-20"
+            >
+              <div className="container mx-auto px-6">
+                <motion.h2 
+                  className="text-4xl md:text-6xl font-bold text-white mb-12 text-center"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  Get In Touch
+                </motion.h2>
+                <div className="max-w-3xl mx-auto text-center">
+                  <div className="mb-10 overflow-hidden">
+                    <div className="inline-block whitespace-nowrap">
+                      <div className="inline-block animate-scroll text-xl text-gray-300 font-medium">
+                        Have a project in mind?&nbsp;&nbsp;
+                        Need your own portfolio?&nbsp;&nbsp;
+                        IT support?&nbsp;&nbsp;
+                        Or perhaps a position for me?&nbsp;&nbsp;
+                        I'd love to hear from you!&nbsp;&nbsp;
+                        Have a project in mind?&nbsp;&nbsp;
+                        Need your own portfolio?&nbsp;&nbsp;
+                        IT support?&nbsp;&nbsp;
+                        Or perhaps a position for me?&nbsp;&nbsp;
+                        I'd love to hear from you!&nbsp;&nbsp;
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex justify-center space-x-8 mb-10">
+                    {[
+                      { Icon: Linkedin, label: 'LinkedIn', url: 'https://linkedin.com/in/yourprofile' },
+                      { Icon: Twitter, label: 'X (Twitter)', url: 'https://x.com/yourhandle' },
+                      { Icon: Instagram, label: 'Instagram', url: 'https://instagram.com/yourhandle' },
+                      { Icon: Facebook, label: 'Facebook', url: 'https://facebook.com/yourpage' }
+                    ].map((social, i) => {
+                      const IconComponent = social.Icon;
+                      return (
+                        <motion.a
+                          key={social.label}
+                          href={social.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                          whileHover={{ y: -5, scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: i * 0.1 }}
+                          aria-label={social.label}
+                        >
+                          <IconComponent className="w-8 h-8" />
+                        </motion.a>
+                      );
+                    })}
+                  </div>
+                  <div className="space-y-4 mb-10">
+                    <a 
+                      href="mailto:phillipkhuma@gmail.com" 
+                      className="inline-flex items-center justify-center w-full max-w-xs mx-auto px-6 py-3.5 bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-medium rounded-full hover:from-cyan-400 hover:to-purple-400 transition-all duration-300 shadow-md hover:shadow-lg"
+                    >
+                      <Mail className="w-5 h-5 mr-2" />
+                      Email Me
+                    </a>
+                    <a 
+                      href="tel:+265990204750" 
+                      className="inline-flex items-center justify-center w-full max-w-xs mx-auto px-6 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-medium rounded-full hover:from-emerald-400 hover:to-teal-400 transition-all duration-300 shadow-md hover:shadow-lg"
+                    >
+                      <Phone className="w-5 h-5 mr-2" />
+                      Call: +265 990 204 750
+                    </a>
+                    <a 
+                      href="tel:+265881103178" 
+                      className="inline-flex items-center justify-center w-full max-w-xs mx-auto px-6 py-3.5 bg-gradient-to-r from-emerald-400 to-teal-400 text-white font-medium rounded-full hover:from-emerald-300 hover:to-teal-300 transition-all duration-300 shadow-md hover:shadow-lg"
+                    >
+                      <Phone className="w-5 h-5 mr-2" />
+                      Call: +265 881 103 178
+                    </a>
+                    <a 
+                      href="https://wa.me/265881103178" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center w-full max-w-xs mx-auto px-6 py-3.5 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-medium rounded-full hover:from-green-400 hover:to-emerald-400 transition-all duration-300 shadow-md hover:shadow-lg"
+                    >
+                      <MessageCircle className="w-5 h-5 mr-2" />
+                      WhatsApp: +265 881 103 178
+                    </a>
+                    <a 
+                      href="/PHILLIP CV.pdf" 
+                      download 
+                      className="inline-flex items-center justify-center w-full max-w-xs mx-auto px-6 py-3.5 bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-medium rounded-full hover:from-purple-400 hover:to-cyan-400 transition-all duration-300 shadow-md hover:shadow-lg"
+                    >
+                      <HardDrive className="w-5 h-5 mr-2" />
+                      Download CV
+                    </a>
+                  </div>
+                  <p className="text-gray-500 text-sm mt-6">
+                    Based in Blantyre, Malawi • Available for remote & on-site work
+                  </p>
+                </div>
+              </div>
+            </motion.section>
+          )}
         </AnimatePresence>
       </main>
 
@@ -976,42 +991,104 @@ const App = () => {
           </div>
         </motion.div>
       )}
-      {/* Degree Image Modal */}
-<AnimatePresence>
-  {selectedDegree && (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
-      onClick={() => setSelectedDegree(null)} // close on outside click
-    >
-      <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.8, opacity: 0 }}
-        className="relative max-w-2xl w-full max-h-[90vh]"
-        onClick={(e) => e.stopPropagation()} // prevent close when clicking image
-      >
-        <img
-          src={selectedDegree.image}
-          alt={`${selectedDegree.degree} Certificate`}
-          className="w-full h-auto rounded-xl shadow-2xl border border-cyan-400/30"
-        />
-        <button
-          onClick={() => setSelectedDegree(null)}
-          className="absolute -top-4 -right-4 bg-cyan-500 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-cyan-400 transition-colors"
-        >
-          ✕
-        </button>
-        <div className="mt-4 text-white text-center">
-          <h3 className="text-xl font-bold">{selectedDegree.degree}</h3>
-          <p className="text-cyan-300">{selectedDegree.institution}</p>
-        </div>
-      </motion.div>
-    </motion.div>
-  )}
-</AnimatePresence>
+
+      {/* Degree Modal */}
+      <AnimatePresence>
+        {selectedDegree && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+            onClick={() => setSelectedDegree(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="relative max-w-2xl w-full max-h-[90vh]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={selectedDegree.image}
+                alt={`${selectedDegree.degree} Certificate`}
+                className="w-full h-auto rounded-xl shadow-2xl border border-cyan-400/30"
+              />
+              <button
+                onClick={() => setSelectedDegree(null)}
+                className="absolute -top-4 -right-4 bg-cyan-500 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-cyan-400 transition-colors"
+              >
+                ✕
+              </button>
+              <div className="mt-4 text-white text-center">
+                <h3 className="text-xl font-bold">{selectedDegree.degree}</h3>
+                <p className="text-cyan-300">{selectedDegree.institution}</p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Graphic Design Gallery Modal */}
+      <AnimatePresence>
+        {galleryOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
+            onClick={() => setGalleryOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative max-w-4xl w-full max-h-[90vh]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={graphicDesignGallery[currentImageIndex].src}
+                alt={graphicDesignGallery[currentImageIndex].title}
+                className="w-full h-auto max-h-[80vh] object-contain rounded-lg"
+              />
+              {graphicDesignGallery.length > 1 && (
+                <>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setCurrentImageIndex(i => i === 0 ? graphicDesignGallery.length - 1 : i - 1);
+                    }}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 text-2xl"
+                  >
+                    ‹
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setCurrentImageIndex(i => i === graphicDesignGallery.length - 1 ? 0 : i + 1);
+                    }}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 text-2xl"
+                  >
+                    ›
+                  </button>
+                </>
+              )}
+              <button
+                onClick={() => setGalleryOpen(false)}
+                className="absolute -top-10 right-0 bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-red-400"
+              >
+                ✕
+              </button>
+              <div className="text-white text-center mt-4">
+                <p className="font-bold">{graphicDesignGallery[currentImageIndex].title}</p>
+                <p className="text-gray-400 text-sm">
+                  {currentImageIndex + 1} / {graphicDesignGallery.length}
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
